@@ -1,10 +1,10 @@
-## 事件注册与回调
+# 事件注册与回调
 
 为了降低各模块之间的耦合度，除了可以采用rpc的方式外，也可以采用事件订阅的方式进行。
 
-### demo
+## demo
 
-#### demo1 
+### demo1 
 
 demo1 以输入信号的方式进行调用
 
@@ -37,7 +37,7 @@ Input your action <create, update, delete>: create
 
 ```
 
-#### demo2
+### demo2
 
 在demo2中使用了接口请求的方式进行调用，灵活性我觉得更好一些
 
