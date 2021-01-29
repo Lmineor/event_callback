@@ -1,4 +1,4 @@
-from .manager import manager
+from manager import manager
 
 _CALLBACK_MANAGER = None
 

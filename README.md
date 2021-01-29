@@ -4,5 +4,31 @@
 
 ### demo
 
-见 ![here](./test_callback.py)
+见 [here](demo1.py)
 
+demo1 运行结果
+
+```python
+Input your action <create, update, delete>: create
+*****starting create database*****
+.
+.
+.
+*****create database finish*****
+*****starting create student table*****
+.
+.
+.
+*****create database finish*****
+*****starting create class table*****
+.
+.
+.
+*****create database finish*****
+*****starting create teacher table*****
+.
+.
+.
+*****create database finish*****
+
+```
