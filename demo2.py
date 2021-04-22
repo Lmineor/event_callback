@@ -12,8 +12,7 @@ import time
 
 from flask import Flask
 
-import registry
-import events
+from callback import events, registry
 
 app = Flask(__name__)
 

@@ -1,5 +1,8 @@
 import collections
 
+from callback.events import NEED_RAISE
+
+
 def get_callback_id(callback):
     """return a unique identifier for the callback"""
     parts = (callback.__name__, str(hash(callback)))
@@ -76,14 +79,12 @@ class CallbacksManager(object):
                 for event in resource_events:
                     self._del_callback(self._callbacks[resource][event], callback_id)
             del self._index[callback_id]
-        
-                
+
     def _del_callback(self, callback_list, callback_id):
         for id_callback_pairs in callback_list:
             if callback_id in id_callback_pairs:
                 callback_list.remove(id_callback_pairs)
                 break
-
 
     def publish(self, resource, event, trigger, payload=None):
         """
@@ -94,9 +95,8 @@ class CallbacksManager(object):
     
     def notify(self, resource, event, trigger, **kwargs):
         errors = self._notify_loop(resource, event, trigger, **kwargs)
-        if errors:
-            print(errors)
-            # do something about the errors
+        for err in errors:
+            print("Event %{event}s callback failed, Error is %{err}s" % err)
         
     def _notify_loop(self, resource, event, trigger, **kwargs):
         errors = []
@@ -106,8 +106,12 @@ class CallbacksManager(object):
                 try:
                     callback(resource, event, trigger, **kwargs)
                 except Exception as e:
-                    print(e)
-                    errors.append(e)
+                    if event in NEED_RAISE:
+                        raise e
+                    else:
+                        errors.append(
+                            {"event": event, "err": e}
+                        )
                     
         return errors
                     

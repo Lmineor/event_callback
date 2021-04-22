@@ -1,7 +1,6 @@
 import time
 
-import registry
-import events
+from callback import events, registry
 
 
 class EventTest(object):
