@@ -15,6 +15,9 @@ class CallbacksManager(object):
         self.clear()
     
     def clear(self):
+        """
+        like init
+        """
         self._callbacks = collections.defaultdict(dict)
         self._index = collections.defaultdict(dict)
         
